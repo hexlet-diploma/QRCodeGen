@@ -4,18 +4,50 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>QR Code Generator</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <main class="container">
       <img id="qr" src="assets/loading.png" alt="QR Code" />
-      
       <form action="" method="get" id="link-form">
         <input type="text" name="link" id="link-input" />
-        <button type="submit">Generate QR</button>
+        <div class="copy-dload-btns">
+          <button type="button" class="copy-btn">Copy</button>
+          <button type="button" class="dload-btn">Download</button>
+        </div>
+        <button type="submit" class="qr-gen-btn">Generate QR</button>
       </form>
-
     </main>
+    <footer>
+      <div class="icons-container">
+        <button class="logo">
+          <span class="material-symbols-outlined circle-btn-icons"> photo_camera </span>
+          <p>LOGO</p>
+        </button>
+        <button class="color">
+          <span class="material-symbols-outlined circle-btn-icons"> palette </span>
+          <p style="left: -8px">COLOR</p>
+        </button>
+        <button class="more">
+          <span class="material-symbols-outlined circle-btn-icons"> more_horiz </span>
+          <p>MORE</p>
+        </button>
+      </div>
+      <div class="bkg-color-container"></div>
+      <div class="bottom-text">
+        <p class="year">&copy; 2025</p>
+        <p class="settings">
+          <span class="material-symbols-outlined settings-icon">
+            settings
+          </span>
+          Settings
+        </p>
+      </div>
+    </footer>
     <script src="index.js" type="module"></script>
   </body>
 </html>

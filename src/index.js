@@ -2,9 +2,17 @@
 
 document.addEventListener('DOMContentLoaded', async () => {
   chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
+    const mainPage = document.getElementById('main-page');
+    const colorPage = document.getElementById('color-page');
+    const confirmColorBtns = document.querySelectorAll('#confirm');
+
     const linkInput = document.getElementById('link-input');
     const linkForm = document.getElementById('link-form');
     const qrImg = document.getElementById('qr');
+
+    const openColorPicker = document.getElementById('open-color-picker');
+    const fgColorPicker = document.getElementById('fg-color-picker');
+    const bgColorPicker = document.getElementById('bg-color-picker');
 
     // Записываем в input ссылку текущей вкладки
     if (tabs.length > 0 && tabs[0].url.startsWith('http')) {
@@ -23,12 +31,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     // Функция генерации QR кода
-    async function generateQRCode(url) {
+    async function generateQRCode(url, fgColor, bgColor) {
       if (!url) return;
 
-      const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(
-        url
-      )}&margin=10`;
+      const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?
+        data=${encodeURIComponent(url)}&
+        margin=10&
+        color=${fgColor}&
+        bgcolor=${bgColor}`;
       try {
         const res = await fetch(qrUrl);
         qrImg.src = res.url;
@@ -69,6 +79,39 @@ document.addEventListener('DOMContentLoaded', async () => {
           console.error('Ошибка при копировании изображения:', err);
         }
       }
+    });
+
+    // Настройка кнопки выбора цвета QR кода
+    openColorPicker.addEventListener('click', () => {
+      mainPage.classList.add('hidden');
+      colorPage.classList.remove('hidden');
+    });
+
+    for (const btn of confirmColorBtns) {
+      btn.addEventListener('click', () => {
+        colorPage.classList.add('hidden');
+        mainPage.classList.remove('hidden');
+      });
+    }
+
+    // Основной цвет
+    fgColorPicker.addEventListener('change', (event) => {
+      const selectedColor = event.target.value.replace('#', '');
+      generateQRCode(
+        document.getElementById('link-input').value,
+        selectedColor,
+        bgColorPicker.value.replace('#', '')
+      );
+    });
+
+    // Цвет фона
+    bgColorPicker.addEventListener('change', (event) => {
+      const selectedColor = event.target.value.replace('#', '');
+      generateQRCode(
+        document.getElementById('link-input').value,
+        fgColorPicker.value.replace('#', ''),
+        selectedColor
+      );
     });
   });
 });

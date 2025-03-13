@@ -11,43 +11,66 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <main class="container">
-      <img id="qr" src="assets/loading.png" alt="QR Code" />
-      <form action="" method="get" id="link-form">
-        <input type="text" name="link" id="link-input" />
-        <div class="copy-dload-btns">
-          <button type="button" class="copy-btn">Copy</button>
-          <button type="button" class="dload-btn">Download</button>
+    <main id="main-page">
+      <section class="qr-container">
+        <img id="qr" src="assets/loading.png" alt="QR Code" />
+        <form action="" method="get" id="link-form">
+          <textarea name="link" id="link-input"></textarea>
+          <div class="copy-dload-btns">
+            <button type="button" class="copy-btn">Copy</button>
+            <button type="button" class="dload-btn">Download</button>
+          </div>
+          <button type="submit" class="qr-gen-btn">Generate QR</button>
+        </form>
+      </section>
+
+      <footer>
+        <div class="icons-container">
+          <button class="logo">
+            <span class="material-symbols-outlined circle-btn-icons">
+              photo_camera
+            </span>
+            <p>LOGO</p>
+          </button>
+          <button class="color" id="open-color-picker">
+            <span class="material-symbols-outlined circle-btn-icons">
+              palette
+            </span>
+            <input type="color" id="color-input" style="display: none" />
+            <p style="left: -8px">COLOR</p>
+          </button>
+          <button class="more">
+            <span class="material-symbols-outlined circle-btn-icons">
+              more_horiz
+            </span>
+            <p>MORE</p>
+          </button>
         </div>
-        <button type="submit" class="qr-gen-btn">Generate QR</button>
-      </form>
+        <div class="bkg-color-container"></div>
+        <div class="bottom-text">
+          <p class="year">&copy; 2025</p>
+          <p class="settings">
+            <span class="material-symbols-outlined settings-icon">
+              settings
+            </span>
+            Settings
+          </p>
+        </div>
+      </footer>
     </main>
-    <footer>
-      <div class="icons-container">
-        <button class="logo">
-          <span class="material-symbols-outlined circle-btn-icons"> photo_camera </span>
-          <p>LOGO</p>
-        </button>
-        <button class="color">
-          <span class="material-symbols-outlined circle-btn-icons"> palette </span>
-          <p style="left: -8px">COLOR</p>
-        </button>
-        <button class="more">
-          <span class="material-symbols-outlined circle-btn-icons"> more_horiz </span>
-          <p>MORE</p>
-        </button>
+
+    <section id="color-page" class="hidden">
+      <button id="confirm" class="back-btn">←</button>
+      <div class="color-picker-container">
+        <h1>Pick a color:</h1>
+        <button id="confirm" class="select-btn">Select</button>
+        <p>QR code color</p>
+        <input type="color" id="fg-color-picker" class="color-picker" />
+        <p>Background color</p>
+        <input type="color" value="#ffffff" id="bg-color-picker" class="color-picker" />
       </div>
-      <div class="bkg-color-container"></div>
-      <div class="bottom-text">
-        <p class="year">&copy; 2025</p>
-        <p class="settings">
-          <span class="material-symbols-outlined settings-icon">
-            settings
-          </span>
-          Settings
-        </p>
-      </div>
-    </footer>
+    </section>
+
     <script src="index.js" type="module"></script>
   </body>
 </html>

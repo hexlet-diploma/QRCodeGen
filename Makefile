@@ -5,4 +5,4 @@ build:
 publish:
 		npm publish --dry-run
 lint:
-		npx eslint --fix src/*.js
+		npx eslint --fix "src/**/*.js"

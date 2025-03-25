@@ -4,7 +4,7 @@
   "description": "",
   "version": "1.0",
   "icons": {
-    "128": "src/assets/icon.png"
+    "128": "src/assets/icons/icon.png"
   },
   "action": {
     "default_popup": "src/index.html",

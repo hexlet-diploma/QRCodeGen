@@ -5,15 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>QR Code Generator</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
       rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&display=swap"
     />
-    <link rel="stylesheet" href="style.css" />
+
+    <link rel="stylesheet" href="styles/style.css" />
   </head>
   <body>
     <main id="main-page">
       <section class="qr-container">
-        <img id="qr" src="assets/loading.png" alt="QR Code" />
+        <img id="qr" src="assets/images/loading.png" alt="QR Code" />
         <form action="" method="get" id="link-form">
           <textarea name="link" id="link-input"></textarea>
           <div class="copy-dload-btns">
@@ -49,11 +50,13 @@
         <div class="bkg-color-container"></div>
         <div class="bottom-text">
           <p class="year">&copy; 2025</p>
-          <p class="settings">
-            <span class="material-symbols-outlined settings-icon">
-              settings
-            </span>
-            Settings
+          <p class="website">
+            <a href="ССЫЛКА НА САЙТ">
+              <span class="material-symbols-outlined website-icon">
+                qr_code
+              </span>
+              QRCodeGen
+            </a>
           </p>
         </div>
       </footer>
@@ -67,10 +70,15 @@
         <p>QR code color</p>
         <input type="color" id="fg-color-picker" class="color-picker" />
         <p>Background color</p>
-        <input type="color" value="#ffffff" id="bg-color-picker" class="color-picker" />
+        <input
+          type="color"
+          value="#ffffff"
+          id="bg-color-picker"
+          class="color-picker"
+        />
       </div>
     </section>
 
-    <script src="index.js" type="module"></script>
+    <script src="scripts/index.js" type="module"></script>
   </body>
 </html>

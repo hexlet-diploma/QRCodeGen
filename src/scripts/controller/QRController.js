@@ -22,7 +22,7 @@ export class QRController {
       }
     });
 
-    // Form submission
+    // Link input submission
     document
       .getElementById('link-form')
       .addEventListener('submit', async (event) => {
@@ -32,6 +32,8 @@ export class QRController {
         const colors = this.view.getColors();
         this.model.setColors(colors.foreground, colors.background);
         const qrCodeUrl = await this.model.generateQRCode();
+        this.view.updateQrGenButton('Ok!');
+        setTimeout(() => this.view.updateQrGenButton('Generate QR'), 500);
         if (qrCodeUrl) {
           this.view.updateQRCode(qrCodeUrl);
         }
@@ -45,16 +47,26 @@ export class QRController {
       this.handleColorChange()
     );
 
+    // Size input
+    document.getElementById('set-size').addEventListener('input', (event) => {
+      const size = parseInt(event.target.value);
+      this.view.updateSizeValue(size);
+      this.handleSizeChange();
+    });
+
     // Download button
     document.querySelector('.dload-btn').addEventListener('click', (event) => {
       event.preventDefault();
       const qrCodeUrl = this.model.getQRCodeUrl();
       if (qrCodeUrl && qrCodeUrl.includes('api.qrserver.com')) {
         chrome.downloads.download({
+          saveAs: true,
           url: qrCodeUrl,
           filename: 'qrcode.png',
         });
       }
+      this.view.updateDloadButton('Ok!');
+      setTimeout(() => this.view.updateDloadButton('Download'), 500);
     });
 
     // Copy button
@@ -85,6 +97,13 @@ export class QRController {
         this.view.showColorPage();
       });
 
+    // Size setting page navigation
+    document
+      .getElementById('open-size-set-page')
+      .addEventListener('click', () => {
+        this.view.showSizePage();
+      });
+
     document.querySelectorAll('#confirm').forEach((btn) => {
       btn.addEventListener('click', () => {
         this.view.showMainPage();
@@ -97,6 +116,35 @@ export class QRController {
     this.model.setUrl(url);
     const colors = this.view.getColors();
     this.model.setColors(colors.foreground, colors.background);
+    const qrCodeUrl = await this.model.generateQRCode();
+    if (qrCodeUrl) {
+      this.view.updateQRCode(qrCodeUrl);
+    }
+  }
+
+  async handleSizeChange() {
+    const url = this.view.getCurrentUrl();
+    this.model.setUrl(url);
+    let size = this.view.getSize();
+    
+    const minSize = 10;
+    const maxSize = 1000;
+    
+    // Size validation
+    if (size < minSize) {
+      size = minSize;
+      this.view.updateSizeValue(size);
+      this.view.updateSizeInput(size);
+    } else if (size > maxSize) {
+      size = maxSize;
+      this.view.updateSizeValue(size);
+      this.view.updateSizeInput(size);
+    } else if (isNaN(size)) {
+      size = 200;
+      this.view.updateSizeValue(size);
+    }
+    
+    this.model.setSize(size);
     const qrCodeUrl = await this.model.generateQRCode();
     if (qrCodeUrl) {
       this.view.updateQRCode(qrCodeUrl);

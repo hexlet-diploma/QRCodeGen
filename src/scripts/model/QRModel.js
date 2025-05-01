@@ -4,6 +4,7 @@ export class QRModel {
     this.foregroundColor = '';
     this.backgroundColor = '';
     this.qrCodeUrl = '';
+    this.size = 200;
   }
 
   async generateQRCode() {
@@ -11,9 +12,9 @@ export class QRModel {
 
     const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(
       this.url
-    )}&margin=10${
-      this.foregroundColor ? `&color=${this.foregroundColor}` : ''
-    }${this.backgroundColor ? `&bgcolor=${this.backgroundColor}` : ''}`;
+    )}&margin=10${this.foregroundColor ? `&color=${this.foregroundColor}` : ''}${
+      this.backgroundColor ? `&bgcolor=${this.backgroundColor}` : ''
+    }&size=${this.size}x${this.size}`;
 
     try {
       const response = await fetch(qrUrl);
@@ -32,6 +33,10 @@ export class QRModel {
   setColors(foreground, background) {
     this.foregroundColor = foreground.replace('#', '');
     this.backgroundColor = background.replace('#', '');
+  }
+
+  setSize(size) {
+    this.size = size;
   }
 
   getQRCodeUrl() {

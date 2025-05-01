@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="styles/style.css" />
   </head>
   <body>
+    <!-- Main page -->
     <main id="main-page">
       <section class="qr-container">
         <img id="qr" src="assets/images/loading.png" alt="QR Code" />
@@ -27,18 +28,19 @@
 
       <footer>
         <div class="icons-container">
-          <button class="logo">
+          <button class="size" id="open-size-set-page">
             <span class="material-symbols-outlined circle-btn-icons">
-              photo_camera
+              photo_size_select_small
             </span>
-            <p>LOGO</p>
+            <input type="size" id="size-input" style="display: none" />
+            <p style="left: 1px">SIZE</p>
           </button>
           <button class="color" id="open-color-picker">
             <span class="material-symbols-outlined circle-btn-icons">
               palette
             </span>
             <input type="color" id="color-input" style="display: none" />
-            <p style="left: -8px">COLOR</p>
+            <p style="left: -9px">COLOR</p>
           </button>
           <button class="more">
             <span class="material-symbols-outlined circle-btn-icons">
@@ -62,11 +64,12 @@
       </footer>
     </main>
 
+    <!-- Color choosing page -->
     <section id="color-page" class="hidden">
       <button id="confirm" class="back-btn">←</button>
       <div class="color-picker-container">
         <h1>Pick a color:</h1>
-        <button id="confirm" class="select-btn">Select</button>
+        <button id="confirm" class="confirm-btn">Confirm</button>
         <p>QR code color</p>
         <input type="color" id="fg-color-picker" class="color-picker" />
         <p>Background color</p>
@@ -76,6 +79,20 @@
           id="bg-color-picker"
           class="color-picker"
         />
+      </div>
+    </section>
+
+    <!-- Size choosing page -->
+    <section id="size-page" class="hidden">
+      <button id="confirm" class="back-btn">←</button>
+      <div class="size-set-container">
+        <h1>Set QR code image size:</h1>
+        <button id="confirm" class="confirm-btn">Confirm</button>
+        <h2>H x W</h2>
+        <div class="sizes-value-container">
+          <input type="number" value="200" id="set-size" min="10" max="1000" />
+          <p>x <span id="size-value">200</span></p>
+        </div>
       </div>
     </section>
 

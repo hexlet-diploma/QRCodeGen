@@ -14,176 +14,217 @@ body {
   display: none;
 }
 
-#qr {
-  max-width: 180px;
-  margin: 5px 0;
-  border: 1px solid var(--outline);
-  border-radius: 5px;
-}
-
-.qr-container {
-  padding: 25px 20px;
-  width: 200px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-}
-
-form#link-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5px;
-
-  button {
-    padding: 5px;
-    text-decoration: none;
+/* Main page */
+main {
+  #qr {
+    max-width: 180px;
+    min-width: 180px;
+    margin: 5px 0;
     border: 1px solid var(--outline);
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 15px;
+    border-radius: 5px;
   }
 
-  .copy-dload-btns {
+  .qr-container {
+    padding: 25px 20px;
+    width: 200px;
     display: flex;
-    justify-content: center;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  form#link-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: 5px;
-    width: 100%;
 
-    button.copy-btn {
-      width: 35%;
-      background: white;
-      color: rgba(51, 51, 51, 1);
+    button {
+      padding: 5px;
+      text-decoration: none;
+      border: 1px solid var(--outline);
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 15px;
+    }
 
-      &:hover {
-        background-color: rgb(223, 238, 255);
+    .copy-dload-btns {
+      display: flex;
+      justify-content: center;
+      flex-direction: row;
+      gap: 5px;
+      width: 100%;
+
+      button.copy-btn {
+        width: 35%;
+        background: white;
+        color: rgba(51, 51, 51, 1);
+
+        &:hover {
+          background-color: rgb(223, 238, 255);
+        }
+      }
+
+      button.dload-btn {
+        width: 65%;
+        background: var(--primary-color);
+        color: white;
+
+        &:hover {
+          background-color: rgb(54, 144, 218);
+        }
       }
     }
 
-    button.dload-btn {
-      width: 65%;
-      background: var(--primary-color);
+    button.qr-gen-btn {
+      width: 100%;
+      background: var(--secondary-color);
       color: white;
 
       &:hover {
-        background-color: rgb(54, 144, 218);
+        background-color: rgb(150, 100, 219);
       }
+    }
+
+    textarea#link-input {
+      width: 100%;
+      box-sizing: border-box;
+      color: rgba(0, 0, 0, 0.5);
+      padding: 5px;
+      border: 1px solid var(--outline);
+      border-radius: 5px;
+      resize: vertical;
     }
   }
 
-  button.qr-gen-btn {
-    width: 100%;
-    background: var(--secondary-color);
-    color: white;
-
-    &:hover {
-      background-color: rgb(150, 100, 219);
-    }
-  }
-
-  textarea#link-input {
-    width: 100%;
-    box-sizing: border-box;
-    color: rgba(0, 0, 0, 0.5);
-    padding: 5px;
-    border: 1px solid var(--outline);
-    border-radius: 5px;
-    resize: vertical;
-  }
-}
-
-footer {
-  position: relative;
-  margin-top: 20px;
-
-  .icons-container {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    position: absolute;
-    top: -15px;
-    left: 0;
-    right: 0;
-    z-index: 2;
-
-    button {
-      width: 55px;
-      height: 55px;
-      border: 3px solid var(--primary-color);
-      border-radius: 50%;
-      padding-top: 6px;
-      cursor: pointer;
-      background-color: white;
-
-      &:hover {
-        background-color: rgb(216, 231, 255);
-      }
-
-      p {
-        margin: 10px 0;
-        position: relative;
-        left: -4px;
-        color: white;
-        font-size: 16px;
-      }
-    }
-  }
-
-  .circle-btn-icons {
-    font-size: 35px;
-    color: var(--secondary-color);
-  }
-
-  .bottom-text {
-    font-size: 15px;
-    color: white;
-
-    p.year {
-      position: absolute;
-      bottom: -10px;
-      right: 25px;
-      z-index: 2;
-    }
-
-    p.website {
-      position: absolute;
-      bottom: -10px;
-      left: 25px;
-      z-index: 2;
-
-      a {
-        text-decoration: none;
-        color: inherit;
-      }
-
-      .website-icon {
-        font-size: 16px;
-        position: relative;
-        bottom: -3px;
-      }
-    }
-  }
-
-  .bkg-color-container {
-    width: 100%;
-    height: 100px;
-    background-color: var(--primary-color);
+  footer {
     position: relative;
-    bottom: -10px;
-    z-index: 1;
+    margin-top: 20px;
+
+    .icons-container {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      position: absolute;
+      top: -15px;
+      left: 0;
+      right: 0;
+      z-index: 2;
+
+      button {
+        width: 55px;
+        height: 55px;
+        border: 3px solid var(--primary-color);
+        border-radius: 50%;
+        padding-top: 7px;
+        cursor: pointer;
+        background-color: white;
+
+        &:hover {
+          background-color: rgb(229, 239, 255);
+        }
+
+        &:active {
+          background-color: white;
+        }
+
+        p {
+          margin: 10px 0;
+          position: relative;
+          left: -4px;
+          color: white;
+          font-size: 16px;
+        }
+      }
+    }
+
+    .circle-btn-icons {
+      font-size: 35px;
+      color: var(--secondary-color);
+    }
+
+    .bottom-text {
+      font-size: 15px;
+      color: white;
+
+      p.year {
+        position: absolute;
+        bottom: -10px;
+        right: 25px;
+        z-index: 2;
+      }
+
+      p.website {
+        position: absolute;
+        bottom: -10px;
+        left: 25px;
+        z-index: 2;
+
+        a {
+          text-decoration: none;
+          color: inherit;
+        }
+
+        .website-icon {
+          font-size: 16px;
+          position: relative;
+          bottom: -3px;
+        }
+      }
+    }
+
+    .bkg-color-container {
+      width: 100%;
+      height: 100px;
+      background-color: var(--primary-color);
+      position: relative;
+      bottom: -10px;
+      z-index: 1;
+    }
   }
 }
 
+/* Custon pages buttons  */
+.confirm-btn {
+  padding: 5px 10px;
+  text-decoration: none;
+  color: white;
+  background-color: var(--primary-color);
+  border: 1px solid var(--outline);
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+
+  &:hover {
+    background-color: rgb(54, 144, 218);
+  }
+}
+
+.back-btn {
+  text-decoration: none;
+  background-color: unset;
+  border: none;
+  color: var(--primary-color);
+  cursor: pointer;
+  font-size: 20px;
+  position: fixed;
+  left: 5px;
+  top: 0;
+
+  &:hover {
+    transform: scale(1.2);
+  }
+}
+
+/* Color choosing page */
 section#color-page {
   width: max-content;
   margin: 60px 45px;
 
   h1 {
-    margin: 0;
     color: var(--primary-color);
-    font-size: 20px;
+    font-size: 24px;
+    text-align: center;
   }
 
   p {
@@ -212,31 +253,54 @@ section#color-page {
     width: 150px;
     height: 50px;
   }
+}
 
-  .back-btn {
-    text-decoration: none;
-    background-color: unset;
-    border: none;
+/* Size choosing page */
+section#size-page {
+  width: 150px;
+  margin: 60px 45px;
+
+  h1 {
     color: var(--primary-color);
-    cursor: pointer;
-    font-size: 20px;
-    position: fixed;
-    left: 5px;
-    top: 0;
+    font-size: 24px;
+    text-align: center;
   }
 
-  .select-btn {
+  h2 {
     padding: 5px 10px;
-    text-decoration: none;
-    color: white;
-    background-color: var(--primary-color);
+    margin: 5px 0 -5px 0;
+    width: 10rem;
+    text-align: center;
+    font-size: 18px;
+    color: var(--primary-color);
     border: 1px solid var(--outline);
     border-radius: 10px;
-    cursor: pointer;
-    font-size: 16px;
+  }
 
-    &:hover {
-      background-color: rgb(54, 144, 218);
+  .size-set-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .sizes-value-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 20px;
+    color: var(--secondary-color);
+
+    input {
+      font-size: inherit;
+      text-align: center;
+      padding: 5px;
+      width: 60px;
+      border: 2px solid var(--secondary-color);
+      border-radius: 10px;
     }
   }
 }

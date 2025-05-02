@@ -178,7 +178,7 @@ export class QRController {
     let margin = this.view.getMarginSize();
 
     const minValue = 0;
-    const maxValue = 50;
+    const maxValue = 100;
 
     // Margin value validation
     if (margin < minValue) {
@@ -188,7 +188,7 @@ export class QRController {
       margin = maxValue;
       this.view.setMarginInput(margin);
     } else if (isNaN(margin)) {
-      margin = 10;
+      margin = minValue;
     }
 
     this.model.setMargin(margin);

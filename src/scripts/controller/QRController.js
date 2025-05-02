@@ -55,7 +55,9 @@ export class QRController {
     });
 
     // Margin input
-    document.getElementById('set-margin').addEventListener('input', () => {
+    document.getElementById('set-margin').addEventListener('input', (event) => {
+      const margin = event.target.value;
+      this.view.updateMarginValue(margin);
       this.handleMarginChange();
     });
 
@@ -191,6 +193,7 @@ export class QRController {
       margin = minValue;
     }
 
+    this.view.updateMarginValue(margin);
     this.model.setMargin(margin);
     const qrCodeUrl = await this.model.generateQRCode();
     if (qrCodeUrl) {

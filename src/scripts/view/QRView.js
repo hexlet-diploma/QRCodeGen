@@ -14,6 +14,7 @@ export class QRView {
     this.sizeInput = document.getElementById('set-size');
     this.sizeValue = document.getElementById('size-value');
     this.marginInput = document.getElementById('set-margin');
+    this.marginValueLabel = document.getElementById('margin-value-label');
     this.accuracyLevel = document.getElementById('accuracy-level-select');
   }
 
@@ -81,6 +82,10 @@ export class QRView {
 
   updateSizeValue(value) {
     this.sizeValue.textContent = value;
+  }
+
+  updateMarginValue(value) {
+    this.marginValueLabel.textContent = value;
   }
 
   setSizeInput(value) {

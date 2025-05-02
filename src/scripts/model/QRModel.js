@@ -5,7 +5,7 @@ export class QRModel {
     this.backgroundColor = '';
     this.qrCodeUrl = '';
     this.size = 200;
-    this.marginSize = 10;
+    this.marginSize = 2;
     this.level = 'L';
   }
 
@@ -14,7 +14,7 @@ export class QRModel {
 
     const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(
       this.url
-    )}&margin=${this.marginSize}${this.foregroundColor ? `&color=${this.foregroundColor}` : ''}${
+    )}&qzone=${this.marginSize}${this.foregroundColor ? `&color=${this.foregroundColor}` : ''}${
       this.backgroundColor ? `&bgcolor=${this.backgroundColor}` : ''
     }&size=${this.size}x${this.size}&ecc=${this.level}`;
 

@@ -54,6 +54,16 @@ export class QRController {
       this.handleSizeChange();
     });
 
+    // Margin input
+    document.getElementById('set-margin').addEventListener('input', () => {
+      this.handleMarginChange();
+    });
+
+    // Accuracy level select
+    document.getElementById('accuracy-level-select').addEventListener('change', () => {
+      this.handleAccuracyLevelChange();
+    });
+
     // Download button
     document.querySelector('.dload-btn').addEventListener('click', (event) => {
       event.preventDefault();
@@ -90,13 +100,6 @@ export class QRController {
         }
       });
 
-    // Color picker page navigation
-    document
-      .getElementById('open-color-picker')
-      .addEventListener('click', () => {
-        this.view.showColorPage();
-      });
-
     // Size setting page navigation
     document
       .getElementById('open-size-set-page')
@@ -104,6 +107,21 @@ export class QRController {
         this.view.showSizePage();
       });
 
+    // Color picker page navigation
+    document
+      .getElementById('open-color-picker')
+      .addEventListener('click', () => {
+        this.view.showColorPage();
+      });
+
+    // More settings page navigation
+    document
+      .getElementById('open-more-settings-page')
+      .addEventListener('click', () => {
+        this.view.showMoreSettingsPage();
+      });
+
+    // Show main page
     document.querySelectorAll('#confirm').forEach((btn) => {
       btn.addEventListener('click', () => {
         this.view.showMainPage();
@@ -126,25 +144,65 @@ export class QRController {
     const url = this.view.getCurrentUrl();
     this.model.setUrl(url);
     let size = this.view.getSize();
-    
+
     const minSize = 10;
     const maxSize = 1000;
-    
+
     // Size validation
-    if (size < minSize) {
+    if (size < 0) {
       size = minSize;
       this.view.updateSizeValue(size);
-      this.view.updateSizeInput(size);
+      this.view.setSizeInput(size);
+    } else if (size < minSize) {
+      size = minSize;
+      this.view.updateSizeValue(size);
     } else if (size > maxSize) {
       size = maxSize;
       this.view.updateSizeValue(size);
-      this.view.updateSizeInput(size);
+      this.view.setSizeInput(size);
     } else if (isNaN(size)) {
       size = 200;
       this.view.updateSizeValue(size);
     }
-    
+
     this.model.setSize(size);
+    const qrCodeUrl = await this.model.generateQRCode();
+    if (qrCodeUrl) {
+      this.view.updateQRCode(qrCodeUrl);
+    }
+  }
+
+  async handleMarginChange() {
+    const url = this.view.getCurrentUrl();
+    this.model.setUrl(url);
+    let margin = this.view.getMarginSize();
+
+    const minValue = 0;
+    const maxValue = 50;
+
+    // Margin value validation
+    if (margin < minValue) {
+      margin = minValue;
+      this.view.setMarginInput(margin);
+    } else if (margin > maxValue) {
+      margin = maxValue;
+      this.view.setMarginInput(margin);
+    } else if (isNaN(margin)) {
+      margin = 10;
+    }
+
+    this.model.setMargin(margin);
+    const qrCodeUrl = await this.model.generateQRCode();
+    if (qrCodeUrl) {
+      this.view.updateQRCode(qrCodeUrl);
+    }
+  }
+
+  async handleAccuracyLevelChange() {
+    const url = this.view.getCurrentUrl();
+    this.model.setUrl(url);
+    const level = this.view.getAccuracyLevel();
+    this.model.setAccuracyLevel(level);
     const qrCodeUrl = await this.model.generateQRCode();
     if (qrCodeUrl) {
       this.view.updateQRCode(qrCodeUrl);

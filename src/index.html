@@ -27,25 +27,29 @@
       </section>
 
       <footer>
+        <!-- Round icons behaviour -->
         <div class="icons-container">
           <button class="size" id="open-size-set-page">
             <span class="material-symbols-outlined circle-btn-icons">
               photo_size_select_small
             </span>
-            <input type="size" id="size-input" style="display: none" />
+            <input id="size-page-button" style="display: none" />
             <p style="left: 1px">SIZE</p>
           </button>
+
           <button class="color" id="open-color-picker">
             <span class="material-symbols-outlined circle-btn-icons">
               palette
             </span>
-            <input type="color" id="color-input" style="display: none" />
+            <input id="color-page-button" style="display: none" />
             <p style="left: -9px">COLOR</p>
           </button>
-          <button class="more">
+
+          <button class="more" id="open-more-settings-page">
             <span class="material-symbols-outlined circle-btn-icons">
               more_horiz
             </span>
+            <input id="more-settings-page-button" style="display: none" />
             <p>MORE</p>
           </button>
         </div>
@@ -70,9 +74,9 @@
       <div class="color-picker-container">
         <h1>Pick a color:</h1>
         <button id="confirm" class="confirm-btn">Confirm</button>
-        <p>QR code color</p>
+        <p>QR code color:</p>
         <input type="color" id="fg-color-picker" class="color-picker" />
-        <p>Background color</p>
+        <p>Background color:</p>
         <input
           type="color"
           value="#ffffff"
@@ -89,10 +93,47 @@
         <h1>Set QR code image size:</h1>
         <button id="confirm" class="confirm-btn">Confirm</button>
         <h2>H x W</h2>
+        <p class="comment">In pixels</p>
         <div class="sizes-value-container">
           <input type="number" value="200" id="set-size" min="10" max="1000" />
           <p>x <span id="size-value">200</span></p>
         </div>
+        <div class="comment-container">
+          <p>Min = 10</p>
+          <p>Max = 1000</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- More settings page -->
+    <section id="more-settings-page" class="hidden">
+      <button id="confirm" class="back-btn">←</button>
+      <div class="more-settings-container">
+        <div>
+          <div class="text-container">
+            <h2>Data redundancy level:</h2>
+            <p class="comment">Affects QR code data accuracy</p>
+          </div>
+          <select name="accuracy-levels" id="accuracy-level-select">
+            <option value="L">Low</option>
+            <option value="M">Middle</option>
+            <option value="Q">Quality</option>
+            <option value="H">High</option>
+          </select>
+        </div>
+
+        <div>
+          <div class="text-container">
+            <h2>Thickness of a margin:</h2>
+            <p class="comment">Margin size in pixels</p>
+            <p class="comment">(min = 0, max = 50)</p>
+          </div>
+          <input type="number" value="10" id="set-margin" min="0" max="50" />
+        </div>
+      </div>
+
+      <div class="confirm-btn-container">
+        <button id="confirm" class="confirm-btn">Confirm</button>
       </div>
     </section>
 

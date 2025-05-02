@@ -3,6 +3,7 @@ export class QRView {
     this.mainPage = document.getElementById('main-page');
     this.colorPage = document.getElementById('color-page');
     this.sizePage = document.getElementById('size-page');
+    this.moreSettingsPage = document.getElementById('more-settings-page');
     this.linkInput = document.getElementById('link-input');
     this.qrImg = document.getElementById('qr');
     this.fgColorPicker = document.getElementById('fg-color-picker');
@@ -12,6 +13,8 @@ export class QRView {
     this.qrGenBtn = document.querySelector('.qr-gen-btn');
     this.sizeInput = document.getElementById('set-size');
     this.sizeValue = document.getElementById('size-value');
+    this.marginInput = document.getElementById('set-margin');
+    this.accuracyLevel = document.getElementById('accuracy-level-select');
   }
 
   updateQRCode(url) {
@@ -20,6 +23,14 @@ export class QRView {
 
   setCurrentUrl(url) {
     this.linkInput.value = url;
+  }
+
+  showMainPage() {
+    this.colorPage.classList.add('hidden');
+    this.sizePage.classList.add('hidden');
+    this.moreSettingsPage.classList.add('hidden');
+
+    this.mainPage.classList.remove('hidden');
   }
 
   showColorPage() {
@@ -32,11 +43,9 @@ export class QRView {
     this.sizePage.classList.remove('hidden');
   }
 
-  showMainPage() {
-    this.colorPage.classList.add('hidden');
-    this.sizePage.classList.add('hidden');
-
-    this.mainPage.classList.remove('hidden');
+  showMoreSettingsPage() {
+    this.mainPage.classList.add('hidden');
+    this.moreSettingsPage.classList.remove('hidden');
   }
 
   updateCopyButton(text) {
@@ -62,12 +71,28 @@ export class QRView {
     return parseInt(this.sizeInput.value);
   }
 
+  getMarginSize() {
+    return parseInt(this.marginInput.value);
+  }
+
+  getAccuracyLevel() {
+    return this.accuracyLevel.value;
+  }
+
   updateSizeValue(value) {
     this.sizeValue.textContent = value;
   }
 
   setSizeInput(value) {
-    this.sizeInput.textContent = value;
+    this.sizeInput.value = value;
+  }
+
+  setMarginInput(value) {
+    this.marginInput.value = value;
+  }
+
+  updateAccuracyLevelValue(value) {
+    this.accuracyLevel.value = value;
   }
 
   getCurrentUrl() {

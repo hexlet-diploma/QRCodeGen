@@ -216,10 +216,24 @@ main {
   }
 }
 
+/* Comments style */
+.comment-container {
+  text-align: center;
+  margin: 15px 0;
+  font-size: 14px;
+  color: #818181;
+  line-height: 15px;
+}
+
+.comment {
+  font-size: 14px;
+  color: #818181;
+}
+
 /* Color choosing page */
 section#color-page {
   width: max-content;
-  margin: 60px 45px;
+  margin: 60px 45px 124px;
 
   h1 {
     color: var(--primary-color);
@@ -246,7 +260,7 @@ section#color-page {
 
   .color-picker {
     text-decoration: none;
-    border: 1px solid var(--outline);
+    border: 1px solid #d1ace6;
     background-color: unset;
     border-radius: 10px;
     padding: 5px;
@@ -258,7 +272,7 @@ section#color-page {
 /* Size choosing page */
 section#size-page {
   width: 150px;
-  margin: 60px 45px;
+  margin: 51px 45px;
 
   h1 {
     color: var(--primary-color);
@@ -275,6 +289,7 @@ section#size-page {
     color: var(--primary-color);
     border: 1px solid var(--outline);
     border-radius: 10px;
+    white-space: pre-wrap;
   }
 
   .size-set-container {
@@ -283,6 +298,10 @@ section#size-page {
     justify-content: center;
     align-items: center;
     gap: 10px;
+
+    .comment {
+      margin: 0;
+    }
   }
 
   .sizes-value-container {
@@ -301,6 +320,56 @@ section#size-page {
       width: 60px;
       border: 2px solid var(--secondary-color);
       border-radius: 10px;
+    }
+  }
+}
+
+/* More settings page */
+section#more-settings-page {
+  width: 200px;
+  margin: 60px 20px;
+
+  .confirm-btn-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+  }
+
+  .more-settings-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .comment-container {
+      margin: 0;
+      line-height: 10px;
+    }
+
+    .text-container {
+      text-align: center;
+      color: var(--primary-color);
+
+      h2,
+      p {
+        margin: 5px 0;
+      }
+    }
+
+    input {
+      border: 1px solid var(--secondary-color);
+      border-radius: 5px;
+      padding: 5px;
+      margin: 10px 0;
+      width: 95%;
+    }
+
+    select {
+      border: 1px solid var(--secondary-color);
+      border-radius: 5px;
+      padding: 5px;
+      margin: 10px 0;
+      width: 100%;
     }
   }
 }
